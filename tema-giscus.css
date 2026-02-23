@@ -10,8 +10,8 @@ main {
     --color-btn-bg: #8a4dff;
     --color-btn-border: #8a4dff;
     --color-btn-text: #ffffff;
-    --color-btn-hover-bg: #8a4dff;
-    --color-btn-hover-border: #8a4dff;
+    --color-btn-hover-bg: #743ce6;
+    --color-btn-hover-border: #743ce6;
     
     /* Textos */
     --color-fg-default: #2d3142;
@@ -19,15 +19,6 @@ main {
     
     font-family: 'Poppins', sans-serif !important;
 }
-
-.BtnGroup-item {
-    background-color: #8a4dff !important;
-}
-
-
-
-
-
 
 /* 1. OCULTAR CABECERA IZQUIERDA (Evita redirección) */
 .gsc-left-header {
