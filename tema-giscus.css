@@ -1,0 +1,75 @@
+/*! Tema Personalizado AcaMedic */
+main {
+    /* Variables base de Giscus adaptadas a tu web */
+    --color-canvas-default: transparent;
+    --color-canvas-overlay: #ffffff;
+    --color-border-default: #e0e2e8;
+    --color-border-muted: #e0e2e8;
+    
+    /* Botones con tu color morado (#8a4dff) */
+    --color-btn-bg: #8a4dff;
+    --color-btn-border: #8a4dff;
+    --color-btn-text: #ffffff;
+    --color-btn-hover-bg: #743ce6;
+    --color-btn-hover-border: #743ce6;
+    
+    /* Textos */
+    --color-fg-default: #2d3142;
+    --color-fg-muted: #8a8f9d;
+    
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* 1. OCULTAR CABECERA IZQUIERDA (Evita redirección) */
+.gsc-left-header {
+    display: none !important;
+}
+
+/* 2. DESACTIVAR VÍNCULOS EXTERNOS (Nombres, fechas, y opciones de header) */
+.gsc-comment-header a, 
+.gsc-comment-author, 
+.gsc-comment-timestamp,
+.gsc-right-header a {
+    pointer-events: none !important; /* Desactiva el clic */
+    cursor: default !important;      /* Quita la manito de enlace */
+    text-decoration: none !important;
+    color: var(--color-fg-default) !important;
+}
+
+/* Ocultar logo inferior de GitHub y otros elementos distractores */
+.gsc-homepage-bg,
+.gsc-reply-button svg {
+    display: none !important;
+}
+
+/* 3. ESTILO MODERNO, TECNOLÓGICO Y FUNCIONAL */
+.gsc-comment-box {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    background-color: #ffffff !important;
+    border: 1px solid var(--color-border-default) !important;
+    margin-bottom: 20px !important;
+}
+
+.gsc-comment {
+    border-radius: 12px !important;
+    background-color: #ffffff !important;
+    border: 1px solid var(--color-border-default) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
+    margin-bottom: 15px !important;
+    padding: 10px !important;
+}
+
+/* Mejorar el cuadro de escritura */
+.gsc-comment-box-textarea {
+    border-radius: 8px !important;
+    background-color: #f8f9fa !important;
+    border: 1px solid #e0e2e8 !important;
+    transition: all 0.3s ease !important;
+}
+
+.gsc-comment-box-textarea:focus {
+    border-color: #8a4dff !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(138, 77, 255, 0.1) !important;
+}
