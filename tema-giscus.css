@@ -20,6 +20,15 @@ main {
     font-family: 'Poppins', sans-serif !important;
 }
 
+.BtnGroup-item {
+    background-color: #8a4dff;
+}
+
+
+
+
+
+
 /* 1. OCULTAR CABECERA IZQUIERDA (Evita redirección) */
 .gsc-left-header {
     display: none !important;
