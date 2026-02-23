@@ -21,7 +21,7 @@ main {
 }
 
 .BtnGroup-item {
-    background-color: #8a4dff;
+    background-color: #8a4dff !important;
 }
 
 
