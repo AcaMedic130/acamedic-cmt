@@ -1,75 +1,118 @@
-/*! Tema Personalizado AcaMedic */
+/*! Tema Personalizado AcaMedic - Diseño Ultra Moderno & LED */
 main {
-    /* Variables base de Giscus adaptadas a tu web */
     --color-canvas-default: transparent;
     --color-canvas-overlay: #ffffff;
     --color-border-default: #e0e2e8;
     --color-border-muted: #e0e2e8;
     
-    /* Botones con tu color morado (#8a4dff) */
     --color-btn-bg: #8a4dff;
     --color-btn-border: #8a4dff;
     --color-btn-text: #ffffff;
     --color-btn-hover-bg: #743ce6;
     --color-btn-hover-border: #743ce6;
     
-    /* Textos */
     --color-fg-default: #2d3142;
     --color-fg-muted: #8a8f9d;
     
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* 1. OCULTAR CABECERA IZQUIERDA (Evita redirección) */
-.gsc-left-header {
-    display: none !important;
-}
-
-/* 2. DESACTIVAR VÍNCULOS EXTERNOS (Nombres, fechas, y opciones de header) */
-.gsc-comment-header a, 
-.gsc-comment-author, 
-.gsc-comment-timestamp,
-.gsc-right-header a {
-    pointer-events: none !important; /* Desactiva el clic */
-    cursor: default !important;      /* Quita la manito de enlace */
-    text-decoration: none !important;
-    color: var(--color-fg-default) !important;
-}
-
-/* Ocultar logo inferior de GitHub y otros elementos distractores */
+/* 1. OCULTAR ELEMENTOS DISTRACTORES */
+.gsc-left-header,
 .gsc-homepage-bg,
 .gsc-reply-button svg {
     display: none !important;
 }
 
-/* 3. ESTILO MODERNO, TECNOLÓGICO Y FUNCIONAL */
+/* 2. DESACTIVAR VÍNCULOS DE PERFILES Y FECHAS (Protección extra) */
+.gsc-comment-header a, 
+.gsc-comment-author, 
+.gsc-comment-timestamp,
+.gsc-right-header a {
+    pointer-events: none !important;
+    cursor: default !important;
+    text-decoration: none !important;
+    color: var(--color-fg-default) !important;
+}
+
+/* =========================================
+   3. ANIMACIONES Y EFECTOS LED MODERNOS
+   ========================================= */
+
+/* Efecto de pulso luminoso para la caja de texto */
+@keyframes neonPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(138, 77, 255, 0.4), 0 0 10px rgba(138, 77, 255, 0.2);
+        border-color: rgba(138, 77, 255, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(138, 77, 255, 0.8), 0 0 20px rgba(138, 77, 255, 0.5), 0 0 30px rgba(138, 77, 255, 0.3);
+        border-color: rgba(138, 77, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(138, 77, 255, 0.4), 0 0 10px rgba(138, 77, 255, 0.2);
+        border-color: rgba(138, 77, 255, 0.6);
+    }
+}
+
+/* Contenedor principal para escribir */
 .gsc-comment-box {
-    border-radius: 12px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04) !important;
     background-color: #ffffff !important;
     border: 1px solid var(--color-border-default) !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 25px !important;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-.gsc-comment {
-    border-radius: 12px !important;
-    background-color: #ffffff !important;
-    border: 1px solid var(--color-border-default) !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
-    margin-bottom: 15px !important;
-    padding: 10px !important;
+.gsc-comment-box:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(138, 77, 255, 0.1) !important;
 }
 
-/* Mejorar el cuadro de escritura */
+/* Caja de texto (Textarea) - Aquí ocurre la magia del LED */
 .gsc-comment-box-textarea {
-    border-radius: 8px !important;
+    border-radius: 12px !important;
     background-color: #f8f9fa !important;
-    border: 1px solid #e0e2e8 !important;
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.95rem !important;
+}
+
+/* Activación del LED al hacer clic (Focus) */
+.gsc-comment-box-textarea:focus {
+    background-color: #ffffff !important;
+    outline: none !important;
+    animation: neonPulse 2s infinite !important; /* Animación infinita */
+}
+
+/* Tarjeta individual de comentarios publicados */
+.gsc-comment {
+    border-radius: 16px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #f0f2f7 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
+    margin-bottom: 18px !important;
+    padding: 15px !important;
     transition: all 0.3s ease !important;
 }
 
-.gsc-comment-box-textarea:focus {
-    border-color: #8a4dff !important;
-    background-color: #ffffff !important;
-    box-shadow: 0 0 0 3px rgba(138, 77, 255, 0.1) !important;
+/* Efecto de elevación sutil al pasar el mouse por un comentario */
+.gsc-comment:hover {
+    border-color: rgba(138, 77, 255, 0.2) !important;
+    box-shadow: 0 8px 20px rgba(138, 77, 255, 0.06) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Botones inferiores (Publicar, Iniciar Sesión) */
+.gsc-comment-box-buttons button {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.gsc-comment-box-buttons button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(138, 77, 255, 0.35) !important;
 }
