@@ -10,8 +10,8 @@ main {
     --color-btn-bg: #8a4dff;
     --color-btn-border: #8a4dff;
     --color-btn-text: #ffffff;
-    --color-btn-hover-bg: #743ce6;
-    --color-btn-hover-border: #743ce6;
+    --color-btn-hover-bg: #8a4dff;
+    --color-btn-hover-border: #8a4dff;
     
     /* Textos */
     --color-fg-default: #2d3142;
