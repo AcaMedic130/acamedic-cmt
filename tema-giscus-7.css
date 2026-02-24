@@ -17,20 +17,17 @@ main {
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* 1. OCULTAR ELEMENTOS DISTRACTORES */
+/* 1. OCULTAR ELEMENTOS DISTRACTORES (Corregido para mostrar barra de herramientas) */
 .gsc-left-header,
 .gsc-homepage-bg,
-.gsc-comment-box-textarea-extras,
 .gsc-header,
 .gsc-reply-button svg {
     display: none !important;
 }
 
-/* 2. DESACTIVAR VÍNCULOS DE PERFILES Y FECHAS (Protección extra) */
-.gsc-comment-header a, 
-.gsc-comment-author, 
-.gsc-comment-timestamp,
-.gsc-right-header a {
+/* 2. DESACTIVAR SOLO PERFILES Y FECHAS (Permitir botones de acción como los 3 puntitos) */
+a.gsc-comment-author, 
+a.gsc-comment-timestamp {
     pointer-events: none !important;
     cursor: default !important;
     text-decoration: none !important;
@@ -140,4 +137,65 @@ main {
 .gsc-comment-box-buttons button:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 5px 15px rgba(138, 77, 255, 0.35) !important;
+}
+
+/* =========================================
+   DISEÑO PARA LA CABECERA DEL COMENTARIO
+   ========================================= */
+.gsc-comment-header {
+    background: linear-gradient(90deg, #f8f9fa 0%, #f0f2f7 100%) !important;
+    border-bottom: 2px solid #e7dffd !important;
+    padding: 10px 15px !important;
+    border-radius: 14px 14px 0 0 !important;
+    /* Margen negativo para que la cabecera toque los bordes de la tarjeta */
+    margin: -15px -15px 15px -15px !important; 
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Resaltar el nombre del autor */
+.gsc-comment-author {
+    color: #8a4dff !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================
+   ANIMACIÓN LED PARA EL TIMELINE (HOVER)
+   ========================================= */
+.gsc-timeline {
+    position: relative !important;
+    border-radius: 16px !important;
+    padding: 15px !important;
+    margin-top: 20px !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+}
+
+/* El rayo de luz giratorio */
+.gsc-timeline::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
+    animation: snakeLED 3s linear infinite;
+    opacity: 0; /* Apagado por defecto */
+    z-index: -2;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* El fondo blanco que tapa el centro para crear el borde */
+.gsc-timeline::after {
+    content: '';
+    position: absolute;
+    inset: 3px; 
+    background-color: #ffffff !important; 
+    border-radius: 14px !important;
+    z-index: -1;
+}
+
+/* Encender la luz al pasar el cursor por cualquier parte del timeline */
+.gsc-timeline:hover::before {
+    opacity: 1 !important;
 }
