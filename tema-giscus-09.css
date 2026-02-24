@@ -198,6 +198,7 @@ main {
 /* =========================================
    DISEÑO PARA LA CABECERA DEL COMENTARIO
    ========================================= */
+
 .gsc-comment-header {
     border-bottom: 2px solid #8a4dff !important;
     padding: 10px 15px !important;
@@ -206,6 +207,7 @@ main {
     margin: -15px -15px 15px -15px !important; 
     display: flex !important;
     align-items: center !important;
+    justify-content: space-between !important; /* <--- CRUCIAL PARA LOS 3 PUNTITOS */
 }
 .gsc-comment-header:hover {
    border-color: #ffffff !important;
@@ -227,22 +229,67 @@ main {
     background-color: #8a4dff !important;
  }
 
+/* =========================================
+   4. VISIBILIDAD DE LOS 3 PUNTOS (EDITAR/ELIMINAR)
+   ========================================= */
 
-/* Proteger el menú nativo de opciones de Giscus (Editar/Eliminar) */
-.gsc-comment-action,
-.gsc-dropdown,
-.gsc-dropdown *,
-summary.color-bg-default {
+/* 1. Forzar que el contenedor de acciones siempre esté visible y no se aplaste */
+.timeline-comment-actions,
+.timeline-comment-actions details,
+.timeline-comment-actions summary {
+    display: block !important;
+    visibility: visible !important;
     pointer-events: auto !important;
     cursor: pointer !important;
-    display: block !important;
+    flex-shrink: 0 !important; /* Impide que el flexbox lo desaparezca */
 }
 
-/* Asegurar que el menú desplegable de editar/eliminar tenga tu estilo */
+/* 2. Colorear el icono de los 3 puntitos para que resalte con tu tema */
+.timeline-comment-actions summary svg {
+    color: #8a4dff !important;
+    fill: #8a4dff !important;
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.timeline-comment-actions summary:hover svg {
+    opacity: 1 !important;
+}
+
+/* 3. Estilizar el menú desplegable (Botones Editar y Eliminar) */
+.dropdown-menu,
 .gsc-dropdown-menu {
-    border: 1px solid var(--color-border-default) !important;
+    background-color: #ffffff !important;
+    border: 2px solid #8a4dff !important;
     border-radius: 10px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 10px 25px rgba(138, 77, 255, 0.25) !important;
+    z-index: 9999 !important; 
+}
+
+.dropdown-item,
+.gsc-dropdown-menu button {
+    color: #2d3142 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.dropdown-item:hover,
+.gsc-dropdown-menu button:hover {
+    background-color: #f0f2f7 !important;
+    color: #8a4dff !important;
+}
+
+/* 4. MAGIA CSS: Solución al corte del menú por culpa de la luz LED */
+/* Cuando hacemos clic en los 3 puntos (el menu <details> se abre), 
+   quitamos temporalmente el overflow y apagamos la luz para que el menú pueda salir libremente */
+.gsc-comment:has(details[open]) {
+    overflow: visible !important;
+}
+.gsc-comment:has(details[open])::before {
+    display: none !important;
 }
 
 
