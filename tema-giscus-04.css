@@ -28,7 +28,9 @@ main {
 
 /* 2. DESACTIVAR SOLO PERFILES Y FECHAS (Permitir botones de acción como los 3 puntitos) */
 .gsc-comment-header a, 
+.gsc-reply-header a, 
 .gsc-comment-author, 
+.gsc-reply-author,
 .gsc-comment-timestamp,
 .gsc-right-header a {
     pointer-events: none !important;
