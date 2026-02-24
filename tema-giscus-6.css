@@ -21,6 +21,7 @@ main {
 .gsc-left-header,
 .gsc-homepage-bg,
 .gsc-comment-box-textarea-extras,
+.gsc-header,
 .gsc-reply-button svg {
     display: none !important;
 }
@@ -78,7 +79,7 @@ main {
 .gsc-comment-box::after {
     content: '';
     position: absolute;
-    inset: 4px; /* Esto define el grosor de nuestra serpiente de luz */
+    inset: 2px; /* Esto define el grosor de nuestra serpiente de luz */
     background-color: #ffffff !important;
     border-radius: 14px !important;
     z-index: -1;
@@ -123,25 +124,9 @@ main {
 }
 
 .gsc-comment:hover {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    /* Crea un rayo de luz morado (el resto es transparente) */
-    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
-    animation: snakeLED 2.5s linear infinite;
-    opacity: 0; /* Apagado por defecto */
-    z-index: -2;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-.gsc-comment::after {
-    content: '';
-    position: absolute;
-    inset: 4px; /* Esto define el grosor de nuestra serpiente de luz */
-    background-color: #ffffff !important;
-    border-radius: 14px !important;
-    z-index: -1;
+    border-color: rgba(138, 77, 255, 0.2) !important;
+    box-shadow: 0 8px 20px rgba(138, 77, 255, 0.06) !important;
+    transform: translateY(-2px) !important;
 }
 
 /* Botones inferiores (Publicar, Iniciar Sesión) */
