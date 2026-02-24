@@ -67,8 +67,9 @@ main {
 }
 
 .gsc-comment-box:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 12px 30px rgba(138, 77, 255, 0.1) !important;
+    background-color: #ffffff !important;
+    outline: none !important;
+    animation: neonPulse 2s infinite !important; /* Animación infinita */
 }
 
 /* Caja de texto (Textarea) - Aquí ocurre la magia del LED */
