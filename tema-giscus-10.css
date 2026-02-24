@@ -30,12 +30,11 @@ main {
 .gsc-comment-header a, 
 .gsc-comment-author, 
 .gsc-comment-timestamp,
-.span.link-primary.overflow-hidden.text-ellipsis.font-semibold,
 .gsc-right-header a {
     pointer-events: none !important;
     cursor: default !important;
     text-decoration: none !important;
-    color: #ffffff !important;
+    color: var(--color-fg-default) !important;
 }
 
 /* =========================================
