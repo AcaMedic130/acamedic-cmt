@@ -84,7 +84,7 @@ main {
 /* Activación del LED al hacer clic (Focus) */
 .gsc-comment-box-textarea:focus {
     background-color: #ffffff !important;
-    border-color: rgba(138, 77, 255, 1);
+    border-color: rgba(138, 77, 255, 1) !important;
 }
 
 /* Tarjeta individual de comentarios publicados */
