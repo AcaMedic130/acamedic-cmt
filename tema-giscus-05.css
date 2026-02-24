@@ -32,6 +32,7 @@ main {
 .gsc-comment-author, 
 .gsc-reply-author,
 .gsc-comment-timestamp,
+.gsc-reply-timestamp,
 .gsc-right-header a {
     pointer-events: none !important;
     cursor: default !important;
