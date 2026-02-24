@@ -79,7 +79,7 @@ main {
 .gsc-comment-box::after {
     content: '';
     position: absolute;
-    inset: 2px; /* Esto define el grosor de nuestra serpiente de luz */
+    inset: 3px; /* Esto define el grosor de nuestra serpiente de luz */
     background-color: #ffffff !important;
     border-radius: 14px !important;
     z-index: -1;
