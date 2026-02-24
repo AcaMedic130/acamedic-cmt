@@ -58,7 +58,7 @@ main {
 }
 
 /* Contenedor principal para escribir */
-.gsc-comment-box {
+.gsc-comment {
     position: relative !important;
     border-radius: 16px !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04) !important;
@@ -71,7 +71,7 @@ main {
 }
 
 /* La luz LED (El gradiente que gira en el fondo) */
-.gsc-comment-box::before {
+.gsc-comment::before {
     content: '';
     position: absolute;
     top: -50%; left: -50%;
@@ -86,7 +86,7 @@ main {
 }
 
 /* Fondo blanco interno (Tapa el centro de la luz para que solo se vea por los bordes) */
-.gsc-comment-box::after {
+.gsc-comment::after {
     content: '';
     position: absolute;
     inset: 3px; /* Esto define el grosor de nuestra serpiente de luz */
@@ -96,11 +96,11 @@ main {
 }
 
 /* MAGIA: Si el textarea hijo tiene el foco, encendemos la serpiente en el contenedor padre */
-.gsc-comment-box:has(.gsc-comment-box-textarea:focus) {
+.gsc-comment:has(.gsc-comment-box-textarea:focus) {
     border-color: transparent !important; /* Ocultamos el borde gris para ver la luz debajo */
 }
 
-.gsc-comment-box:has(.gsc-comment-box-textarea:focus)::before {
+.gsc-comment:has(.gsc-comment-box-textarea:focus)::before {
     opacity: 1; /* Encendemos la luz */
 }
 
