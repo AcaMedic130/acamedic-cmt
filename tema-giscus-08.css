@@ -58,7 +58,7 @@ main {
 }
 
 /* Contenedor principal para escribir */
-.gsc-comment {
+.gsc-comment-box {
     position: relative !important;
     border-radius: 16px !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04) !important;
@@ -71,7 +71,7 @@ main {
 }
 
 /* La luz LED (El gradiente que gira en el fondo) */
-.gsc-comment::before {
+.gsc-comment-box::before {
     content: '';
     position: absolute;
     top: -50%; left: -50%;
@@ -86,7 +86,7 @@ main {
 }
 
 /* Fondo blanco interno (Tapa el centro de la luz para que solo se vea por los bordes) */
-.gsc-comment::after {
+.gsc-comment-box::after {
     content: '';
     position: absolute;
     inset: 3px; /* Esto define el grosor de nuestra serpiente de luz */
@@ -96,11 +96,11 @@ main {
 }
 
 /* MAGIA: Si el textarea hijo tiene el foco, encendemos la serpiente en el contenedor padre */
-.gsc-comment:has(.gsc-comment-box-textarea:focus) {
+.gsc-comment-box:has(.gsc-comment-box-textarea:focus) {
     border-color: transparent !important; /* Ocultamos el borde gris para ver la luz debajo */
 }
 
-.gsc-comment:has(.gsc-comment-box-textarea:focus)::before {
+.gsc-comment-box:has(.gsc-comment-box-textarea:focus)::before {
     opacity: 1; /* Encendemos la luz */
 }
 
@@ -122,21 +122,61 @@ main {
     outline: none !important;
 }
 
-/* Tarjeta individual de comentarios publicados (Se mantiene intacta) */
+/* Tarjeta individual de comentarios publicados */
 .gsc-comment {
+    position: relative !important;
     border-radius: 15px !important;
     background-color: #ffffff !important;
     border: 2.5px solid #8a4dff !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
     padding: 15px !important;
+    margin-bottom: 15px !important;
     transition: all 0.3s ease !important;
+    overflow: hidden !important; /* Vital para cortar la luz y que no salga de las esquinas */
+    z-index: 1 !important;
 }
 
+/* La serpiente de luz (oculta por defecto) */
+.gsc-comment::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
+    animation: snakeLED 3s linear infinite;
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* El fondo interno que hace de máscara para que solo se vea el borde */
+.gsc-comment::after {
+    content: '';
+    position: absolute;
+    inset: 2.5px; /* Mismo grosor que tu borde original */
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    z-index: -1;
+}
+
+/* Efecto Hover: Ocultamos el borde sólido y encendemos la luz */
 .gsc-comment:hover {
-    border-color: #ffffff !important;
+    border-color: transparent !important; 
     box-shadow: 0 8px 20px rgba(138, 77, 255, 0.06) !important;
     transform: translateY(-2px) !important;
 }
+
+.gsc-comment:hover::before {
+    opacity: 1 !important;
+}
+
+/* Asegurar que el contenido del comentario quede por encima del fondo blanco */
+.gsc-comment > * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
 
 /* Botones inferiores (Publicar, Iniciar Sesión) */
 .gsc-comment-box-buttons button {
@@ -177,46 +217,6 @@ main {
     font-weight: 700 !important;
 }
 
-/* =========================================
-   ANIMACIÓN LED PARA EL TIMELINE (HOVER)
-   ========================================= */
-.gsc-timeline {
-    position: relative !important;
-    border-radius: 15px !important;
-    padding: 10px !important;
-    margin-top: 20px !important;
-    z-index: 1 !important;
-    overflow: hidden !important;
-}
-
-/* El rayo de luz giratorio */
-.gsc-timeline::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
-    animation: snakeLED 3s linear infinite;
-    opacity: 0; /* Apagado por defecto */
-    z-index: -2;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-/* El fondo blanco que tapa el centro para crear el borde */
-.gsc-timeline::after {
-    content: '';
-    position: absolute;
-    inset: 3px; 
-    background-color: #ffffff !important; 
-    border-radius: 14px !important;
-    z-index: -1;
-}
-
-/* Encender la luz al pasar el cursor por cualquier parte del timeline */
-.gsc-timeline:hover::before {
-    opacity: 1 !important;
-}
 
 
 .color-bg-primary.w-full.min-w-0.rounded-md.border.color-border-primary {
@@ -226,3 +226,23 @@ main {
 .gsc-tl-line {
     background-color: #8a4dff !important;
  }
+
+
+/* Proteger el menú nativo de opciones de Giscus (Editar/Eliminar) */
+.gsc-comment-action,
+.gsc-dropdown,
+.gsc-dropdown *,
+summary.color-bg-default {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    display: block !important;
+}
+
+/* Asegurar que el menú desplegable de editar/eliminar tenga tu estilo */
+.gsc-dropdown-menu {
+    border: 1px solid var(--color-border-default) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+
