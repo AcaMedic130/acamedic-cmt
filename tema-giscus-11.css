@@ -37,6 +37,13 @@ main {
     color: var(--color-fg-default) !important;
 }
 
+.color-bg-primary.w-full.min-w-0.rounded-md.border.color-border-primary {
+        border: 0px !important;
+}
+
+.gsc-tl-line {
+    background-color: #8a4dff !important;
+ }   
 /* =========================================
    3. ANIMACIONES Y EFECTOS LED MODERNOS (SERPIENTE)
    ========================================= */
