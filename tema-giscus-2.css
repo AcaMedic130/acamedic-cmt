@@ -20,6 +20,7 @@ main {
 /* 1. OCULTAR ELEMENTOS DISTRACTORES */
 .gsc-left-header,
 .gsc-homepage-bg,
+.gsc-comment-box-textarea-extras,
 .gsc-reply-button svg {
     display: none !important;
 }
