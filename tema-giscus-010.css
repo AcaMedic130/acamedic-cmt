@@ -1,0 +1,341 @@
+/*! Tema Personalizado AcaMedic - Diseño Ultra Moderno & LED */
+main {
+    --color-canvas-default: transparent;
+    --color-canvas-overlay: #ffffff;
+    --color-border-default: #e0e2e8;
+    --color-border-muted: #e0e2e8;
+    
+    --color-btn-bg: #8a4dff;
+    --color-btn-border: #8a4dff;
+    --color-btn-text: #ffffff;
+    --color-btn-hover-bg: #743ce6;
+    --color-btn-hover-border: #743ce6;
+    
+    --color-fg-default: #2d3142;
+    --color-fg-muted: #8a8f9d;
+    
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* 1. OCULTAR ELEMENTOS DISTRACTORES (Corregido para mostrar barra de herramientas) */
+.gsc-left-header,
+.gsc-homepage-bg,
+.gsc-header,
+.gsc-comment-box-textarea-extras,
+.gsc-reply-button svg {
+    display: none !important;
+}
+
+/* 2. DESACTIVAR SOLO PERFILES Y FECHAS (Permitir botones de acción como los 3 puntitos) */
+/* 2. DESACTIVAR SOLO PERFILES (Permitir botones de acción y nuestro nuevo botón de editar) */
+.gsc-comment-author, 
+.gsc-right-header a {
+    pointer-events: none !important;
+    cursor: default !important;
+    text-decoration: none !important;
+    color: var(--color-fg-default) !important;
+}
+
+/* Evitamos que den clic en el avatar/nombre, pero permitimos el clic en la fecha (botón) */
+.gsc-comment-header a:not(:has(.gsc-comment-timestamp)) {
+    pointer-events: none !important;
+}
+
+.gsc-reply-header a, 
+.gsc-reply-author,
+.gsc-reply-timestamp,
+.gsc-right-header a {
+    pointer-events: none !important;
+    cursor: default !important;
+    text-decoration: none !important;
+    color: var(--color-fg-default) !important;
+}
+
+/* =========================================
+   3. ANIMACIONES Y EFECTOS LED MODERNOS (SERPIENTE)
+   ========================================= */
+
+/* Animación de giro circular (Serpiente de luz) */
+@keyframes snakeLED {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Contenedor principal para escribir */
+.gsc-comment-box {
+    position: relative !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04) !important;
+    background-color: #ffffff !important;
+    border: 2px solid var(--color-border-default) !important; /* Borde normal por defecto */
+    margin-bottom: 25px !important;
+    overflow: hidden !important; /* IMPORTANTE: Corta la luz para que no salga de las esquinas redondeadas */
+    z-index: 1 !important;
+    transition: border-color 0.3s ease !important;
+}
+
+/* La luz LED (El gradiente que gira en el fondo) */
+.gsc-comment-box::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    /* Crea un rayo de luz morado (el resto es transparente) */
+    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
+    animation: snakeLED 2.5s linear infinite;
+    opacity: 0; /* Apagado por defecto */
+    z-index: -2;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Fondo blanco interno (Tapa el centro de la luz para que solo se vea por los bordes) */
+.gsc-comment-box::after {
+    content: '';
+    position: absolute;
+    inset: 3px; /* Esto define el grosor de nuestra serpiente de luz */
+    background-color: #ffffff !important;
+    border-radius: 14px !important;
+    z-index: -1;
+}
+
+/* MAGIA: Si el textarea hijo tiene el foco, encendemos la serpiente en el contenedor padre */
+.gsc-comment-box:has(.gsc-comment-box-textarea:focus) {
+    border-color: transparent !important; /* Ocultamos el borde gris para ver la luz debajo */
+}
+
+.gsc-comment-box:has(.gsc-comment-box-textarea:focus)::before {
+    opacity: 1; /* Encendemos la luz */
+}
+
+/* Caja de texto (Textarea) - Aquí pondremos tu borde morado */
+.gsc-comment-box-textarea {
+    border-radius: 12px !important;
+    background-color: #f8f9fa !important;
+    border: 2px solid transparent !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.95rem !important;
+    position: relative;
+    z-index: 2; /* Para que quede encima de la serpiente */
+}
+
+/* Al presionar el textarea: borde morado y fondo blanco */
+.gsc-comment-box-textarea:focus {
+    background-color: #ffffff !important;
+    border: 2px solid #8a4dff !important;
+    outline: none !important;
+}
+
+/* Tarjeta individual de comentarios publicados */
+.gsc-comment {
+    position: relative !important;
+    border-radius: 15px !important;
+    background-color: #ffffff !important;
+    border: 2.5px solid #8a4dff !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important; /* Vital para cortar la luz y que no salga de las esquinas */
+    z-index: 1 !important;
+}
+
+/* La serpiente de luz (oculta por defecto) */
+.gsc-comment::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(transparent, transparent, transparent, #8a4dff);
+    animation: snakeLED 3s linear infinite;
+    opacity: 0;
+    z-index: -2;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* El fondo interno que hace de máscara para que solo se vea el borde */
+.gsc-comment::after {
+    content: '';
+    position: absolute;
+    inset: 2.5px; /* Mismo grosor que tu borde original */
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    z-index: -1;
+}
+
+/* Efecto Hover: Ocultamos el borde sólido y encendemos la luz */
+.gsc-comment:hover {
+    border-color: transparent !important; 
+    box-shadow: 0 8px 20px rgba(138, 77, 255, 0.06) !important;
+    transform: translateY(-2px) !important;
+}
+
+.gsc-comment:hover::before {
+    opacity: 1 !important;
+}
+
+/* Asegurar que el contenido del comentario quede por encima del fondo blanco */
+.gsc-comment > * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+
+/* Botones inferiores (Publicar, Iniciar Sesión) */
+.gsc-comment-box-buttons button {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.gsc-comment-box-buttons button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(138, 77, 255, 0.35) !important;
+}
+
+.color-bg-primary.w-full.min-w-0.rounded-md.border.color-box-border-info {
+    border: 0px;
+}
+
+/* =========================================
+   DISEÑO PARA LA CABECERA DEL COMENTARIO
+   ========================================= */
+
+.gsc-comment-header {
+    border-bottom: 2px solid #8a4dff !important;
+    padding: 10px 15px !important;
+    border-radius: 14px 14px 0 0 !important;
+    /* Margen negativo para que la cabecera toque los bordes de la tarjeta */
+    margin: -15px -15px 15px -15px !important; 
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important; /* <--- CRUCIAL PARA LOS 3 PUNTITOS */
+}
+.gsc-comment-header:hover {
+   border-color: #ffffff !important;
+}
+
+/* Resaltar el nombre del autor */
+.gsc-comment-author {
+    color: #8a4dff !important;
+    font-weight: 700 !important;
+}
+
+
+
+.color-bg-primary.w-full.min-w-0.rounded-md.border.color-border-primary {
+        border: 0px !important;
+}
+
+.gsc-tl-line {
+    background-color: #8a4dff !important;
+ }
+
+/* =========================================
+   4. VISIBILIDAD DE LOS 3 PUNTOS (EDITAR/ELIMINAR)
+   ========================================= */
+
+/* 1. Forzar que el contenedor de acciones siempre esté visible y no se aplaste */
+.timeline-comment-actions,
+.timeline-comment-actions details,
+.timeline-comment-actions summary {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important; /* Impide que el flexbox lo desaparezca */
+}
+
+/* 2. Colorear el icono de los 3 puntitos para que resalte con tu tema */
+.timeline-comment-actions summary svg {
+    color: #8a4dff !important;
+    fill: #8a4dff !important;
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.timeline-comment-actions summary:hover svg {
+    opacity: 1 !important;
+}
+
+/* 3. Estilizar el menú desplegable (Botones Editar y Eliminar) */
+.dropdown-menu,
+.gsc-dropdown-menu {
+    background-color: #ffffff !important;
+    border: 2px solid #8a4dff !important;
+    border-radius: 10px !important;
+    box-shadow: 0 10px 25px rgba(138, 77, 255, 0.25) !important;
+    z-index: 9999 !important; 
+}
+
+.dropdown-item,
+.gsc-dropdown-menu button {
+    color: #2d3142 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.dropdown-item:hover,
+.gsc-dropdown-menu button:hover {
+    background-color: #f0f2f7 !important;
+    color: #8a4dff !important;
+}
+
+/* 4. MAGIA CSS: Solución al corte del menú por culpa de la luz LED */
+/* Cuando hacemos clic en los 3 puntos (el menu <details> se abre), 
+   quitamos temporalmente el overflow y apagamos la luz para que el menú pueda salir libremente */
+.gsc-comment:has(details[open]) {
+    overflow: visible !important;
+}
+.gsc-comment:has(details[open])::before {
+    display: none !important;
+}
+
+/* =========================================
+   5. BOTÓN "EDITAR" (Transformación de la fecha)
+   ========================================= */
+
+/* Reactivamos los clics específicamente para el enlace de la fecha */
+.gsc-comment-header a:has(.gsc-comment-timestamp) {
+    pointer-events: auto !important;
+}
+
+/* Transformamos el texto en un botón */
+.gsc-comment-timestamp {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #f0f2f7 !important; /* Fondo suave */
+    color: #8a4dff !important; /* Tu color principal (morado) */
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    
+    /* El truco mágico: ocultamos la fecha original con font-size: 0 */
+    font-size: 0 !important; 
+    font-weight: 600 !important;
+    border: 1px solid #e7dffd !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Inyectamos el texto del botón usando un pseudo-elemento */
+.gsc-comment-timestamp::after {
+    content: "✏️ Editar" !important;
+    font-size: 0.85rem !important; /* Le damos tamaño solo al texto nuevo */
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* Efecto Hover para que parezca un botón real e interactivo */
+.gsc-comment-timestamp:hover {
+    background-color: #8a4dff !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(138, 77, 255, 0.25) !important;
+    border-color: #8a4dff !important;
+}
