@@ -322,6 +322,7 @@ a.link-secondary.overflow-hidden.text-ellipsis {
     transition: all 0.2s ease !important;
     cursor: pointer !important;
     pointer-events: auto !important;
+    text-decoration: none !important;
 }
 
 /* Inyectamos el texto del botón usando un pseudo-elemento */
