@@ -306,7 +306,7 @@ main {
 }
 
 /* Transformamos el texto en un botón */
-.gsc-comment-timestamp {
+a.link-secondary.overflow-hidden.text-ellipsis {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -325,14 +325,14 @@ main {
 }
 
 /* Inyectamos el texto del botón usando un pseudo-elemento */
-.gsc-comment-timestamp::after {
+a.link-secondary.overflow-hidden.text-ellipsis::after {
     content: "✏️ Editar" !important;
     font-size: 0.85rem !important; /* Le damos tamaño solo al texto nuevo */
     font-family: 'Poppins', sans-serif !important;
 }
 
 /* Efecto Hover para que parezca un botón real e interactivo */
-.gsc-comment-timestamp:hover {
+a.link-secondary.overflow-hidden.text-ellipsis:hover {
     background-color: #8a4dff !important;
     color: #ffffff !important;
     transform: translateY(-2px);
